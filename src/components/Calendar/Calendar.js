@@ -1,38 +1,25 @@
 import React, { useState } from "react";
 import ReactCalendar from "react-calendar";
 import { add, format } from "date-fns";
-import { STORE_CLOSING_TIME, STORE_OPENING_TIME, INTERVAL } from "@/constants/config";
+import {
+  STORE_CLOSING_TIME,
+  STORE_OPENING_TIME,
+  INTERVAL,
+} from "@/constants/config";
 
-function Calendar() {
-  const [date, setDate] = useState({
-    justDate: null,
-    dateTime: null,
-  });
+const Calendar = ({ onClose }) => {
+  const [selectedDateTime, setSelectedDateTime] = useState(null);
 
   const getTimes = () => {
-    if (!date.justDate) return;
+    if (!selectedDateTime) return [];
 
-    const { justDate } = date;
-
-    const beginning = add(justDate, { hours: STORE_OPENING_TIME });
-    const end = add(justDate, { hours: STORE_CLOSING_TIME });
+    const beginning = add(selectedDateTime, { hours: STORE_OPENING_TIME });
+    const end = add(selectedDateTime, { hours: STORE_CLOSING_TIME });
     const interval = INTERVAL;
-    const columnsPerRow = 5;
 
     const times = [];
-    let currentRow = [];
-
     for (let i = beginning; i <= end; i = add(i, { minutes: interval })) {
-      currentRow.push(i);
-
-      if (currentRow.length === columnsPerRow) {
-        times.push(...currentRow, 'BREAK_LINE');
-        currentRow = [];
-      }
-    }
-
-    if (currentRow.length > 0) {
-      times.push(...currentRow);
+      times.push(i);
     }
 
     return times;
@@ -40,34 +27,66 @@ function Calendar() {
 
   const times = getTimes();
 
+  const handleBackClick = () => {
+    setSelectedDateTime(null);
+  };
+
+  const handleTimeSelection = (time) => {
+    // Add your logic here to handle the selected date and time
+    console.log("Date & Time Selected:", selectedDateTime, format(time, "h:mm a"));
+  };
+
+  const handleCloseClick = () => {
+    setSelectedDateTime(null);
+    onClose();
+  };
+
   return (
-    <div className="h-screen flex flex-col justify-center items-center">
-      {date.justDate ? (
-        <div className="flex flex-wrap gap-4 intervalContainer">
-          {times?.map((time, i) => (
-            <div key={i} className={`rounded-sm intervalButton ${time === 'BREAK_LINE' ? 'breakLine' : ''}`}>
-              {time !== 'BREAK_LINE' && (
-                <button
-                  type="button"
-                  onClick={() => setDate((prev) => ({ ...prev, dateTime: time }))}
-                  className="fixed-width-button"
-                >
-                  {format(time, "h:mm a")}
-                </button>
-              )}
-            </div>
-          ))}
-        </div>
-      ) : (
+    <div className="CalendarBox h-[100vh] w-[100vw] flex flex-col justify-center items-center relative">
+      {selectedDateTime && (
+        <>
+          <button
+            className="text-lg absolute top-4 right-2 text-gray-500 dark:text-gray-300"
+            onClick={handleBackClick}
+            style={{ zIndex: 1 }}
+          >
+            Back
+          </button>
+          <div className="grid grid-cols-5 gap-4">
+            {times.map((time, index) => (
+              <button
+                key={index}
+                type="button"
+                className="text-sm rounded-sm p-2 w-20 h-14 bg-gray-200 dark:bg-gray-700"
+                onClick={() => handleTimeSelection(time)}
+              >
+                {format(time, "h:mm a")}
+              </button>
+            ))}
+          </div>
+        </>
+      )}
+
+      {!selectedDateTime && (
         <ReactCalendar
           minDate={new Date()}
           className="REACT-CALENDAR p-2"
           view="month"
-          onClickDay={(selectedDate) => setDate((prev) => ({ ...prev, justDate: selectedDate }))}
+          onClickDay={(selectedDate) => setSelectedDateTime(selectedDate)}
         />
+      )}
+
+      {selectedDateTime && (
+        <button
+          className="text-lg absolute top-4 right-16 text-gray-500 dark:text-gray-300"
+          onClick={handleCloseClick}
+          style={{ zIndex: 1 }}
+        >
+          Close
+        </button>
       )}
     </div>
   );
-}
+};
 
 export default Calendar;
