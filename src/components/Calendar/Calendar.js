@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Axios from "axios";
 import ReactCalendar from "react-calendar";
 import { add, format } from "date-fns";
 import {
@@ -31,9 +32,25 @@ const Calendar = ({ onClose }) => {
     setSelectedDateTime(null);
   };
 
-  const handleTimeSelection = (time) => {
-    // Add your logic here to handle the selected date and time
-    console.log("Date & Time Selected:", selectedDateTime, format(time, "h:mm a"));
+  const handleTimeSelection = async (time) => {
+    try {
+      const response = await Axios.post('/api/bookDate', {
+        date: selectedDateTime,
+        time: format(time, "HH:mm"), // Format time as "HH:mm" string
+        userId: '1', 
+      });
+
+      if (response.data.success) {
+        console.log('Date & Time successfully logged to the database.');
+        // Additional logic if needed
+      } else {
+        console.error('Failed to log Date & Time to the database.');
+        // Handle error
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      // Handle error
+    }
   };
 
   const handleCloseClick = () => {
@@ -43,6 +60,15 @@ const Calendar = ({ onClose }) => {
 
   return (
     <div className="CalendarBox h-[100vh] w-[100vw] flex flex-col justify-center items-center relative">
+      <p>On computer, you can press Esc to Close Calendar.</p>
+      <p>There are also buttons on the uppermost top right of the screen for navigation.</p>
+      <button
+        className="text-lg absolute top-4 right-16 text-gray-500 dark:text-gray-300"
+        onClick={handleCloseClick}
+        style={{ zIndex: 1 }}
+      >
+        Close
+      </button>
       {selectedDateTime && (
         <>
           <button
