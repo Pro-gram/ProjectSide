@@ -47,7 +47,7 @@ export default function Home() {
                 className="pt-2 !text-left !text-6xl xl:!text-5xl lg:!text-center lg:!text-6xl md:!text-5xl sm:!text-3xl"
               />
               <p className="my-4 text-base font-medium md:text-sm sm:!text-xs">
-                A professional team dedicated to making things look excellent. We are a diverse team, from computer programmers to Vancouver Film School graduates. Our goal is to bring visions to life and help companies achieve new sales goals through our multi-media network.
+                A professional team dedicated to making the web look excellent. We are a diverse team, from computer programmers to Vancouver Film School graduates. Our goal is to bring your vision to life while helping companies achieve new sales goals through our multi-media network.
               </p>
               <div className="mt-2 flex items-center self-start lg:self-center">
                 <button
@@ -62,7 +62,7 @@ export default function Home() {
                 </button>
 
                 <Link
-                  href="mailto:codebucks27@gmail.com"
+                  href=""
                   className="ml-4 text-lg font-medium capitalize text-dark underline 
                   dark:text-light md:text-base"
                 >
@@ -73,10 +73,8 @@ export default function Home() {
           </div>
         </Layout>
 
-        <HireMe />
-        <div className="absolute right-8 bottom-8 inline-block w-24 md:hidden">
-          TEST
-        </div>
+        
+
 
         <Transition show={isModalOpen} as={React.Fragment}>
           <Dialog onClose={handleCloseModal}>

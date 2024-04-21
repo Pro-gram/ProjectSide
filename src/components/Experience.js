@@ -51,7 +51,7 @@ const Experience = () => {
 
       <div className="my-64">
         <h2 className="font-bold text-8xl mb-32 w-full text-center md:text-6xl xs:text-4xl md:mb-16">
-          Experience
+          The Team
         </h2>
 
         <div ref={ref} className="relative w-[75%] mx-auto lg:w-[90%] md:w-full">
@@ -62,30 +62,27 @@ const Experience = () => {
           />
           <ul className="w-full flex flex-col items-start justify-between ml-4 xs:ml-2">
             <Details
-              position="Software Engineer"
-              company="Google"
+              position="The CEO"
+              company="Ideas Imprint Incorporated"
               companyLink="https://google.com"
-              time="2022-Present"
-              address="Mountain View, CA"
-              work="Worked on a team responsible for developing new features for Google's search engine, including improving the accuracy and relevance of search results and developing new tools for data analysis and visualization."
+              time="2019-Present"
+              address="North Vancouver, British Columbia"
+              work="A Visionary for better displaying the world wide web through a different lens. Ideas Imprint Incorporated was founded as an umbrella company, to whom of which, the owner, sees 3DSlides as the pinnacle of it's next success."
             />
 
             <Details
-              position="Intern"
+              position="Consultant / Software Engineer"
               company="Facebook"
               companyLink="https://facebook.com"
-              time="Summer 2021"
+              time="2020-2024"
               address="Menlo Park, CA."
-              work="Worked on a team responsible for developing a new mobile app
-              feature that allowed users to create and share short-form video
-              content, including designing and implementing a new user interface
-              and developing the backend infrastructure to support the feature."
+              work="Worked as a Level 2 Software Engineer for Facebook for multiple years and is currently persuing his own dream. We consult with this engineer, as we have been friends since 5 years old. Truly a good life long friend, with expert advise."
             />
 
             <Details
-              position="Software Developer"
-              company="Amazon"
-              companyLink="https://amazon.com"
+              position="Top Level Photographer"
+              company="Vancouver Film School"
+              companyLink=""
               time="2020-2021"
               address="Seattle, WA."
               work="Worked on a team responsible for developing Amazon's mobile app, including implementing new features such as product recommendations and user reviews, and optimizing the app's performance and reliability."

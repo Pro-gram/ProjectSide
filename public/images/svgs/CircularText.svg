@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="500" height="500" viewBox="0 0 500 500">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+        stroke: #c19d93;
+        stroke-width: 2px;
+      }
+
+      .cls-2, .cls-3 {
+        font-size: 51px;
+        text-anchor: middle;
+      }
+
+      .cls-3 {
+        font-family: "Times New Roman";
+      }
+    </style>
+    <path id="text-path" d="Z"/>
+  </defs>
+  <circle class="cls-1" cx="246.5" cy="243.5" r="163.5"/>
+  <text class="cls-2"><textPath startOffset="50%" xlink:href="#text-path"><tspan class="cls-3" x="0">Photography, Computer Programming &amp; Design۩ ۩۩۩۩</tspan></textPath></text>
+</svg>
